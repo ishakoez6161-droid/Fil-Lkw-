@@ -32,7 +32,7 @@ const images = [
 
 export default function Gallery() {
   return (
-    <section id="galerie" className="relative bg-white py-24 sm:py-32">
+    <section id="galerie" className="relative bg-ink-900 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -41,10 +41,10 @@ export default function Gallery() {
           transition={{ duration: 0.6 }}
           className="mx-auto max-w-2xl text-center"
         >
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-600">
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-400">
             Galerie
           </span>
-          <h2 className="font-display text-balance mt-4 text-3xl font-extrabold tracking-tight text-ink-950 sm:text-4xl lg:text-5xl">
+          <h2 className="font-display text-balance mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
             Einblicke in unsere Einsätze
           </h2>
         </motion.div>
@@ -57,7 +57,7 @@ export default function Gallery() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className={`group relative overflow-hidden rounded-2xl shadow-soft ring-1 ring-ink-100 ${image.span}`}
+              className={`group relative overflow-hidden rounded-2xl shadow-soft ring-1 ring-white/10 ${image.span}`}
             >
               <Image
                 src={image.src}

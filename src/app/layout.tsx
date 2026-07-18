@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#ffffff",
+  themeColor: "#0b0c12",
 };
 
 export default function RootLayout({
@@ -50,7 +50,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" className={`${inter.variable} ${manrope.variable} h-full scroll-smooth`}>
-      <body className="min-h-full flex flex-col bg-white text-neutral-900 antialiased font-sans">
+      <body className="min-h-full flex flex-col bg-ink-950 text-ink-100 antialiased font-sans">
         {children}
       </body>
     </html>

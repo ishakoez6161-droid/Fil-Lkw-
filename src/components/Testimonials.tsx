@@ -23,7 +23,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section id="bewertungen" className="relative bg-ink-50/60 py-24 sm:py-32">
+    <section id="bewertungen" className="relative bg-ink-950 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -32,10 +32,10 @@ export default function Testimonials() {
           transition={{ duration: 0.6 }}
           className="mx-auto max-w-2xl text-center"
         >
-          <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-600">
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-400">
             Kundenstimmen
           </span>
-          <h2 className="font-display text-balance mt-4 text-3xl font-extrabold tracking-tight text-ink-950 sm:text-4xl lg:text-5xl">
+          <h2 className="font-display text-balance mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
             Darauf vertrauen unsere Kunden
           </h2>
         </motion.div>
@@ -48,18 +48,18 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="flex flex-col rounded-2xl border border-ink-100 bg-white p-7 shadow-sm"
+              className="flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-7"
             >
               <div className="flex gap-1 text-brand-500">
                 {Array.from({ length: 5 }).map((_, idx) => (
                   <Star key={idx} size={16} fill="currentColor" strokeWidth={0} />
                 ))}
               </div>
-              <p className="mt-5 flex-1 text-sm leading-relaxed text-ink-600">
+              <p className="mt-5 flex-1 text-sm leading-relaxed text-ink-300">
                 &ldquo;{t.text}&rdquo;
               </p>
-              <div className="mt-6 border-t border-ink-100 pt-4">
-                <div className="text-sm font-bold text-ink-950">{t.name}</div>
+              <div className="mt-6 border-t border-white/10 pt-4">
+                <div className="text-sm font-bold text-white">{t.name}</div>
                 <div className="text-xs text-ink-400">{t.role}</div>
               </div>
             </motion.div>

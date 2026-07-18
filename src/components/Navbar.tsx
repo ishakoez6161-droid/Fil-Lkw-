@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Phone, X } from "lucide-react";
 import { navLinks, site } from "@/lib/site";
@@ -31,23 +32,23 @@ export default function Navbar() {
               : "border border-transparent py-2.5"
           }`}
         >
-          <a href="#top" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/images/logo.png"
+              src="/images/logo-dark.png"
               alt="FIL Truck-Center Logo"
               width={150}
               height={70}
               priority
               className="h-9 w-auto sm:h-11"
             />
-          </a>
+          </Link>
 
           <nav className="hidden items-center gap-8 lg:flex">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-semibold text-ink-700 transition-colors hover:text-ink-950"
+                className="text-sm font-semibold text-ink-300 transition-colors hover:text-white"
               >
                 {link.label}
               </a>
@@ -57,11 +58,11 @@ export default function Navbar() {
           <div className="hidden items-center gap-3 lg:flex">
             <a
               href={site.phoneHref}
-              className="group inline-flex items-center gap-2 rounded-full bg-ink-950 px-5 py-2.5 text-sm font-bold text-white shadow-soft transition-transform hover:scale-[1.03] active:scale-[0.98]"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2.5 text-sm font-bold text-ink-950 shadow-brand transition-transform hover:scale-[1.03] active:scale-[0.98]"
             >
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-400" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ink-950 opacity-40" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-ink-950" />
               </span>
               24/7 Notruf
               <Phone
@@ -75,7 +76,7 @@ export default function Navbar() {
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menü öffnen"
-            className="flex h-10 w-10 items-center justify-center rounded-full text-ink-900 lg:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-white lg:hidden"
           >
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -89,7 +90,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.2 }}
-            className="mx-4 mt-2 rounded-2xl border border-ink-100 bg-white shadow-soft lg:hidden"
+            className="mx-4 mt-2 rounded-2xl border border-white/10 bg-ink-900 shadow-soft lg:hidden"
           >
             <nav className="flex flex-col gap-1 p-4">
               {navLinks.map((link) => (
@@ -97,14 +98,14 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="rounded-xl px-3 py-3 text-sm font-semibold text-ink-800 hover:bg-ink-50"
+                  className="rounded-xl px-3 py-3 text-sm font-semibold text-ink-100 hover:bg-white/5"
                 >
                   {link.label}
                 </a>
               ))}
               <a
                 href={site.phoneHref}
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-ink-950 px-5 py-3 text-sm font-bold text-white"
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-5 py-3 text-sm font-bold text-ink-950"
               >
                 <Phone size={15} /> 24/7 Notruf: {site.phone}
               </a>

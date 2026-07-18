@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Stats from "@/components/Stats";
 import Services from "@/components/Services";
 import WhyUs from "@/components/WhyUs";
 import ServiceArea from "@/components/ServiceArea";
@@ -15,6 +16,7 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
+        <Stats />
         <Services />
         <WhyUs />
         <ServiceArea />

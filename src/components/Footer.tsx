@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { navLinks, site } from "@/lib/site";
 
@@ -9,11 +10,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-12 border-b border-white/10 pb-12 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 lg:col-span-1">
             <Image
-              src="/images/logo.png"
+              src="/images/logo-dark.png"
               alt="FIL Truck-Center Logo"
               width={150}
               height={70}
-              className="h-10 w-auto brightness-0 invert"
+              className="h-10 w-auto"
             />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-ink-400">
               Ihr Premium-Partner für LKW-Abschleppdienst, Bergung und
@@ -90,12 +91,12 @@ export default function Footer() {
             {site.owner}. Alle Rechte vorbehalten.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-ink-300">
+            <Link href="/impressum" className="hover:text-ink-300">
               Impressum
-            </a>
-            <a href="#" className="hover:text-ink-300">
+            </Link>
+            <Link href="/datenschutz" className="hover:text-ink-300">
               Datenschutz
-            </a>
+            </Link>
           </div>
         </div>
       </div>

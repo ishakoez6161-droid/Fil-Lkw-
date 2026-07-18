@@ -15,10 +15,10 @@ export const site = {
 };
 
 export const navLinks = [
-  { label: "Leistungen", href: "#leistungen" },
-  { label: "Warum wir", href: "#warum-wir" },
-  { label: "Einsatzgebiet", href: "#einsatzgebiet" },
-  { label: "Galerie", href: "#galerie" },
-  { label: "Bewertungen", href: "#bewertungen" },
-  { label: "Kontakt", href: "#kontakt" },
+  { label: "Leistungen", href: "/#leistungen" },
+  { label: "Warum wir", href: "/#warum-wir" },
+  { label: "Einsatzgebiet", href: "/#einsatzgebiet" },
+  { label: "Galerie", href: "/#galerie" },
+  { label: "Bewertungen", href: "/#bewertungen" },
+  { label: "Kontakt", href: "/#kontakt" },
 ];

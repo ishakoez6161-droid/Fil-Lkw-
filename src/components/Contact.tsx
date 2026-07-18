@@ -1,20 +1,46 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { CheckCircle2, Mail, MapPin, Phone, Send } from "lucide-react";
+import { AlertCircle, CheckCircle2, Loader2, Mail, MapPin, Phone, Send } from "lucide-react";
 import { site } from "@/lib/site";
 
-export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+type Status = "idle" | "loading" | "success" | "error";
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+export default function Contact() {
+  const [status, setStatus] = useState<Status>("idle");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubmitted(true);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    setStatus("loading");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          phone: formData.get("phone"),
+          email: formData.get("email"),
+          message: formData.get("message"),
+        }),
+      });
+
+      if (!response.ok) throw new Error("request_failed");
+
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
-    <section id="kontakt" className="relative overflow-hidden bg-ink-950 py-24 sm:py-32">
+    <section id="kontakt" className="relative overflow-hidden bg-ink-900 py-24 sm:py-32">
       <div
         aria-hidden
         className="pointer-events-none absolute -top-32 left-1/2 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-brand-500/10 blur-[140px]"
@@ -119,7 +145,7 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 lg:col-span-3"
           >
-            {submitted ? (
+            {status === "success" ? (
               <div className="flex h-full min-h-[24rem] flex-col items-center justify-center text-center">
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-500/15 text-brand-400">
                   <CheckCircle2 size={32} />
@@ -182,13 +208,54 @@ export default function Contact() {
                     className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-ink-400 outline-none transition-colors focus:border-brand-500"
                   />
                 </div>
+
+                <div className="sm:col-span-2">
+                  <label className="flex items-start gap-3 text-xs leading-relaxed text-ink-400">
+                    <input
+                      required
+                      type="checkbox"
+                      name="consent"
+                      className="mt-0.5 h-4 w-4 shrink-0 rounded border-white/20 bg-white/5 accent-brand-500"
+                    />
+                    <span>
+                      Ich habe die{" "}
+                      <Link
+                        href="/datenschutz"
+                        className="font-semibold text-ink-200 underline-offset-4 hover:text-brand-400 hover:underline"
+                      >
+                        Datenschutzerklärung
+                      </Link>{" "}
+                      gelesen und bin mit der Verarbeitung meiner Daten zur
+                      Bearbeitung meiner Anfrage einverstanden.
+                    </span>
+                  </label>
+                </div>
+
+                {status === "error" && (
+                  <div className="sm:col-span-2 flex items-start gap-2 rounded-xl border border-red-400/20 bg-red-400/10 px-4 py-3 text-sm text-red-300">
+                    <AlertCircle size={16} className="mt-0.5 shrink-0" />
+                    Ihre Anfrage konnte nicht gesendet werden. Bitte rufen Sie
+                    uns direkt an: {site.phone}
+                  </div>
+                )}
+
                 <div className="sm:col-span-2">
                   <button
                     type="submit"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-500 px-7 py-4 text-sm font-bold text-ink-950 shadow-brand transition-transform hover:scale-[1.01] active:scale-[0.99] sm:w-auto"
+                    disabled={status === "loading"}
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-500 px-7 py-4 text-sm font-bold text-ink-950 shadow-brand transition-transform hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 disabled:hover:scale-100 sm:w-auto"
                   >
-                    <Send size={16} />
-                    Anfrage senden
+                    {status === "loading" ? (
+                      <>
+                        <Loader2 size={16} className="animate-spin" />
+                        Wird gesendet...
+                      </>
+                    ) : (
+                      <>
+                        <Send size={16} />
+                        Anfrage senden
+                      </>
+                    )}
                   </button>
                 </div>
               </form>

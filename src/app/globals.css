@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #14161c;
+  --background: #0b0c12;
+  --foreground: #f4f5f7;
 
   --color-brand-50: #fffdf2;
   --color-brand-100: #fff8d6;
@@ -81,14 +81,7 @@ body {
   }
 
   .glass {
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-  }
-
-  .glass-dark {
-    background: rgba(20, 22, 28, 0.55);
+    background: rgba(30, 33, 43, 0.65);
     backdrop-filter: blur(20px) saturate(160%);
     -webkit-backdrop-filter: blur(20px) saturate(160%);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -103,17 +96,17 @@ body {
 
   .bg-grid {
     background-image:
-      linear-gradient(to right, rgba(20, 22, 28, 0.045) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(20, 22, 28, 0.045) 1px, transparent 1px);
+      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
     background-size: 44px 44px;
   }
 
   .shadow-brand {
-    box-shadow: 0 20px 40px -12px rgba(255, 201, 0, 0.35);
+    box-shadow: 0 20px 45px -12px rgba(255, 201, 0, 0.3);
   }
 
   .shadow-soft {
-    box-shadow: 0 30px 60px -25px rgba(20, 22, 28, 0.25);
+    box-shadow: 0 30px 60px -25px rgba(0, 0, 0, 0.6);
   }
 }
 
