@@ -60,6 +60,14 @@ export default function Hero() {
         aria-hidden
         className="pointer-events-none absolute -bottom-56 left-[-10%] h-[30rem] w-[30rem] rounded-full bg-azure-500/10 blur-[120px]"
       />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 flex select-none items-center justify-center overflow-hidden"
+      >
+        <span className="font-display translate-y-4 text-[13rem] leading-none font-extrabold tracking-tighter text-white/[0.035] sm:text-[20rem] lg:text-[26rem]">
+          FIL
+        </span>
+      </div>
       <motion.div
         aria-hidden
         className="pointer-events-none absolute h-[26rem] w-[26rem] rounded-full bg-brand-400/[0.07] blur-[90px]"

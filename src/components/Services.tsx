@@ -114,8 +114,11 @@ export default function Services() {
             >
               <SpotlightCard
                 lift={6}
-                className="h-full rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:border-brand-500/40 hover:bg-white/[0.06]"
+                className="h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:border-brand-500/40 hover:bg-white/[0.06]"
               >
+                <span className="font-display pointer-events-none absolute -top-2 right-3 text-6xl font-extrabold text-white/[0.05] transition-colors duration-300 group-hover/spotlight:text-brand-500/10">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-500/15 text-brand-400 transition-colors duration-300 group-hover/spotlight:bg-brand-500 group-hover/spotlight:text-ink-950">
                   <service.icon size={22} />
                 </div>

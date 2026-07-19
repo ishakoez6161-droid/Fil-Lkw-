@@ -85,7 +85,7 @@ export default function Stats() {
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-500/15 text-brand-400 transition-all duration-300 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-ink-950">
                 <stat.icon size={22} />
               </div>
-              <div className="font-display text-4xl font-extrabold text-white sm:text-5xl">
+              <div className="font-display text-shimmer text-4xl font-extrabold sm:text-5xl">
                 <CountUp value={stat.value} suffix={stat.suffix} />
               </div>
               <div>

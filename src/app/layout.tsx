@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Manrope } from "next/font/google";
+import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
 import "./globals.css";
 
@@ -57,6 +58,7 @@ export default function RootLayout({
           className="grain-overlay pointer-events-none fixed inset-0 z-40 opacity-[0.035] mix-blend-overlay"
         />
         <ScrollProgress />
+        <CustomCursor />
         {children}
       </body>
     </html>
