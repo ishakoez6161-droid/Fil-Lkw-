@@ -63,6 +63,7 @@ export default function WhyUs() {
                   alt="Moderne Nutzfahrzeug-Werkstatt von FIL Truck-Center"
                   width={947}
                   height={661}
+                  sizes="(min-width: 1024px) 600px, 100vw"
                   className="h-full w-full scale-110 object-cover"
                 />
               </motion.div>

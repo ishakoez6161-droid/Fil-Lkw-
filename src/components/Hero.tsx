@@ -185,6 +185,7 @@ export default function Hero() {
                 width={1558}
                 height={1000}
                 priority
+                sizes="(min-width: 1024px) 620px, 100vw"
                 className="h-[26rem] w-full scale-110 object-cover sm:h-[32rem]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-ink-950/10 to-transparent" />

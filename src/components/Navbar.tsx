@@ -64,7 +64,6 @@ export default function Navbar() {
               alt="FIL Truck-Center Logo"
               width={150}
               height={70}
-              priority
               className="h-9 w-auto sm:h-11"
             />
           </Link>

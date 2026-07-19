@@ -10,24 +10,28 @@ const images = [
     alt: "Volvo FH 500 Bergefahrzeug von FIL Truck-Center",
     caption: "Unser Schwerlast-Bergefahrzeug",
     span: "sm:col-span-2 sm:row-span-2",
+    sizes: "(min-width: 640px) 800px, 100vw",
   },
   {
     src: "/images/truck-recovery.jpg",
     alt: "LKW-Bergung eines liegengebliebenen Sattelzugs",
     caption: "Bergung im Einsatz",
     span: "",
+    sizes: "(min-width: 640px) 400px, 100vw",
   },
   {
     src: "/images/truck-night.jpg",
     alt: "Nächtlicher Pannenhilfe-Einsatz von FIL Truck-Center",
     caption: "Rund um die Uhr im Einsatz",
     span: "",
+    sizes: "(min-width: 640px) 400px, 100vw",
   },
   {
     src: "/images/workshop.jpg",
     alt: "Moderne Werkstatthalle von FIL Truck-Center",
     caption: "Unsere Werkstatt in Hamm",
     span: "sm:col-span-2",
+    sizes: "(min-width: 640px) 800px, 100vw",
   },
 ];
 
@@ -70,6 +74,7 @@ export default function Gallery() {
                   alt={image.alt}
                   width={1200}
                   height={900}
+                  sizes={image.sizes}
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-ink-950/0 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-90" />
