@@ -1,8 +1,10 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Award, Clock, ShieldCheck, Wrench } from "lucide-react";
+import SpotlightCard from "./SpotlightCard";
 
 const points = [
   {
@@ -32,27 +34,40 @@ const points = [
 ];
 
 export default function WhyUs() {
+  const imageRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: imageRef,
+    offset: ["start end", "end start"],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+
   return (
     <section id="warum-wir" className="relative bg-ink-900 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <motion.div
+            ref={imageRef}
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
-            <div className="relative overflow-hidden rounded-[2rem] shadow-soft ring-1 ring-white/10">
-              <Image
-                src="/images/workshop.jpg"
-                alt="Moderne Nutzfahrzeug-Werkstatt von FIL Truck-Center"
-                width={947}
-                height={661}
-                className="h-[22rem] w-full object-cover sm:h-[30rem]"
-              />
+            <SpotlightCard
+              tilt
+              className="relative overflow-hidden rounded-[2rem] shadow-soft ring-1 ring-white/10"
+            >
+              <motion.div style={{ y: imageY }} className="h-[24rem] sm:h-[32rem]">
+                <Image
+                  src="/images/workshop.jpg"
+                  alt="Moderne Nutzfahrzeug-Werkstatt von FIL Truck-Center"
+                  width={947}
+                  height={661}
+                  className="h-full w-full scale-110 object-cover"
+                />
+              </motion.div>
               <div className="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent" />
-            </div>
+            </SpotlightCard>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -72,10 +87,10 @@ export default function WhyUs() {
 
           <div>
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-400">
                 Warum FIL Truck-Center?
@@ -95,21 +110,29 @@ export default function WhyUs() {
               {points.map((point, i) => (
                 <motion.div
                   key={point.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-colors hover:border-brand-500/40 hover:bg-white/[0.06]"
+                  transition={{
+                    duration: 0.6,
+                    delay: i * 0.1,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-500/15 text-brand-400">
-                    <point.icon size={18} />
-                  </div>
-                  <h3 className="mt-4 text-sm font-bold text-white">
-                    {point.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-400">
-                    {point.description}
-                  </p>
+                  <SpotlightCard
+                    lift={4}
+                    className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-colors duration-300 hover:border-brand-500/40 hover:bg-white/[0.06]"
+                  >
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-500/15 text-brand-400 transition-colors duration-300 group-hover/spotlight:bg-brand-500 group-hover/spotlight:text-ink-950">
+                      <point.icon size={18} />
+                    </div>
+                    <h3 className="mt-4 text-sm font-bold text-white">
+                      {point.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-400">
+                      {point.description}
+                    </p>
+                  </SpotlightCard>
                 </motion.div>
               ))}
             </div>

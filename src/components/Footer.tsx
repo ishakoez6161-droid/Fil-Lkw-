@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { navLinks, site } from "@/lib/site";
+import Magnetic from "./Magnetic";
 
 export default function Footer() {
   return (
@@ -75,13 +76,15 @@ export default function Footer() {
             <p className="mt-5 text-sm leading-relaxed text-ink-300">
               Ob Tag oder Nacht – wir sind für Sie erreichbar.
             </p>
-            <a
-              href={site.phoneHref}
-              className="mt-5 inline-flex items-center gap-2 rounded-full bg-brand-500 px-5 py-3 text-sm font-bold text-ink-950 transition-transform hover:scale-[1.03]"
-            >
-              <Phone size={15} />
-              Jetzt anrufen
-            </a>
+            <Magnetic strength={0.25} className="mt-5">
+              <a
+                href={site.phoneHref}
+                className="btn-shine inline-flex items-center gap-2 rounded-full bg-brand-500 px-5 py-3 text-sm font-bold text-ink-950 transition-transform hover:scale-[1.03]"
+              >
+                <Phone size={15} />
+                Jetzt anrufen
+              </a>
+            </Magnetic>
           </div>
         </div>
 

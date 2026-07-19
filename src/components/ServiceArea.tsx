@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { MapPin, Navigation, Phone } from "lucide-react";
 import { site } from "@/lib/site";
+import Magnetic from "./Magnetic";
 
 const regions = [
   "Hamm",
@@ -23,10 +24,10 @@ export default function ServiceArea() {
     <section id="einsatzgebiet" className="relative bg-ink-950 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto max-w-2xl text-center"
         >
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-400">
@@ -70,7 +71,7 @@ export default function ServiceArea() {
                 <button
                   type="button"
                   onClick={() => setMapLoaded(true)}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-sm font-bold text-ink-950 transition-transform hover:scale-[1.03]"
+                  className="btn-shine inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-sm font-bold text-ink-950 transition-transform hover:scale-[1.03]"
                 >
                   <MapPin size={16} />
                   Karte laden
@@ -106,36 +107,44 @@ export default function ServiceArea() {
               </p>
 
               <div className="mt-6 flex flex-wrap gap-2">
-                {regions.map((region) => (
-                  <span
+                {regions.map((region, i) => (
+                  <motion.span
                     key={region}
-                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-ink-200"
+                    initial={{ opacity: 0, scale: 0.85 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.35, delay: 0.3 + i * 0.05 }}
+                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold text-ink-200 transition-colors duration-200 hover:border-brand-500/40 hover:text-white"
                   >
                     {region}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </div>
 
             <div className="mt-8 flex flex-col gap-3">
-              <a
-                href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-                  site.mapsQuery
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/20"
-              >
-                <Navigation size={16} />
-                Route berechnen
-              </a>
-              <a
-                href={site.phoneHref}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-5 py-3 text-sm font-bold text-ink-950 transition-transform hover:scale-[1.02]"
-              >
-                <Phone size={16} />
-                Jetzt anrufen
-              </a>
+              <Magnetic strength={0.25}>
+                <a
+                  href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+                    site.mapsQuery
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-white/10 px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-white/20"
+                >
+                  <Navigation size={16} />
+                  Route berechnen
+                </a>
+              </Magnetic>
+              <Magnetic strength={0.25}>
+                <a
+                  href={site.phoneHref}
+                  className="btn-shine inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-5 py-3 text-sm font-bold text-ink-950 transition-transform hover:scale-[1.02]"
+                >
+                  <Phone size={16} />
+                  Jetzt anrufen
+                </a>
+              </Magnetic>
             </div>
           </motion.div>
         </div>

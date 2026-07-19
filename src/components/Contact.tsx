@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { AlertCircle, CheckCircle2, Loader2, Mail, MapPin, Phone, Send } from "lucide-react";
 import { site } from "@/lib/site";
+import Magnetic from "./Magnetic";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -41,17 +42,19 @@ export default function Contact() {
 
   return (
     <section id="kontakt" className="relative overflow-hidden bg-ink-900 py-24 sm:py-32">
-      <div
+      <motion.div
         aria-hidden
+        animate={{ x: [0, -50, 30, 0], y: [0, 30, -20, 0] }}
+        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
         className="pointer-events-none absolute -top-32 left-1/2 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-brand-500/10 blur-[140px]"
       />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto max-w-2xl text-center"
         >
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-400">
@@ -85,13 +88,15 @@ export default function Contact() {
                 Bei einer Panne oder einem Unfall zählt jede Minute – rufen
                 Sie uns direkt an.
               </p>
-              <a
-                href={site.phoneHref}
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-ink-950 px-6 py-3 text-sm font-bold text-white transition-transform hover:scale-[1.03]"
-              >
-                <Phone size={16} />
-                {site.phone}
-              </a>
+              <Magnetic strength={0.25} className="mt-6">
+                <a
+                  href={site.phoneHref}
+                  className="btn-shine inline-flex items-center gap-2 rounded-full bg-ink-950 px-6 py-3 text-sm font-bold text-white transition-transform hover:scale-[1.03]"
+                >
+                  <Phone size={16} />
+                  {site.phone}
+                </a>
+              </Magnetic>
             </div>
 
             <div className="space-y-5 rounded-[2rem] border border-white/10 bg-white/[0.03] p-8">
@@ -240,23 +245,25 @@ export default function Contact() {
                 )}
 
                 <div className="sm:col-span-2">
-                  <button
-                    type="submit"
-                    disabled={status === "loading"}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-500 px-7 py-4 text-sm font-bold text-ink-950 shadow-brand transition-transform hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 disabled:hover:scale-100 sm:w-auto"
-                  >
-                    {status === "loading" ? (
-                      <>
-                        <Loader2 size={16} className="animate-spin" />
-                        Wird gesendet...
-                      </>
-                    ) : (
-                      <>
-                        <Send size={16} />
-                        Anfrage senden
-                      </>
-                    )}
-                  </button>
+                  <Magnetic strength={0.15} block className="w-full sm:w-auto">
+                    <button
+                      type="submit"
+                      disabled={status === "loading"}
+                      className="btn-shine inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-500 px-7 py-4 text-sm font-bold text-ink-950 shadow-brand transition-transform hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 disabled:hover:scale-100 sm:w-auto"
+                    >
+                      {status === "loading" ? (
+                        <>
+                          <Loader2 size={16} className="animate-spin" />
+                          Wird gesendet...
+                        </>
+                      ) : (
+                        <>
+                          <Send size={16} />
+                          Anfrage senden
+                        </>
+                      )}
+                    </button>
+                  </Magnetic>
                 </div>
               </form>
             )}

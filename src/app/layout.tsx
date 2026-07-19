@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Manrope } from "next/font/google";
+import ScrollProgress from "@/components/ScrollProgress";
 import "./globals.css";
 
 const inter = Inter({
@@ -51,6 +52,11 @@ export default function RootLayout({
   return (
     <html lang="de" className={`${inter.variable} ${manrope.variable} h-full scroll-smooth`}>
       <body className="min-h-full flex flex-col bg-ink-950 text-ink-100 antialiased font-sans">
+        <div
+          aria-hidden
+          className="grain-overlay pointer-events-none fixed inset-0 z-40 opacity-[0.035] mix-blend-overlay"
+        />
+        <ScrollProgress />
         {children}
       </body>
     </html>

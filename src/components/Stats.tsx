@@ -60,8 +60,10 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
 export default function Stats() {
   return (
     <section className="relative border-y border-white/5 bg-ink-900 py-16 sm:py-20">
-      <div
+      <motion.div
         aria-hidden
+        animate={{ x: [0, 40, -30, 0] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         className="pointer-events-none absolute left-1/2 top-1/2 h-[24rem] w-[50rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/[0.06] blur-[130px]"
       />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -69,13 +71,18 @@ export default function Stats() {
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="flex flex-col items-center gap-3 px-6 py-8 text-center sm:py-0"
+              transition={{
+                duration: 0.6,
+                delay: i * 0.12,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              whileHover={{ y: -4 }}
+              className="group flex flex-col items-center gap-3 px-6 py-8 text-center transition-colors duration-300 sm:py-0"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-500/15 text-brand-400">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-500/15 text-brand-400 transition-all duration-300 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-ink-950">
                 <stat.icon size={22} />
               </div>
               <div className="font-display text-4xl font-extrabold text-white sm:text-5xl">

@@ -108,6 +108,68 @@ body {
   .shadow-soft {
     box-shadow: 0 30px 60px -25px rgba(0, 0, 0, 0.6);
   }
+
+  .spotlight-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  .spotlight-glow {
+    background: radial-gradient(
+      420px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      rgba(255, 201, 0, 0.16),
+      transparent 70%
+    );
+  }
+
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .btn-shine::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      115deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.4) 45%,
+      transparent 70%
+    );
+    transform: translateX(-130%);
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn-shine:hover::after {
+    transform: translateX(130%);
+  }
+
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -4px;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-brand-400), var(--color-brand-600));
+    transition: right 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .nav-link:hover::after {
+    right: 0;
+  }
+
+  .grain-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 120px 120px;
+  }
 }
 
 ::selection {

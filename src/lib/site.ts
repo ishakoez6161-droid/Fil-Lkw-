@@ -19,6 +19,5 @@ export const navLinks = [
   { label: "Warum wir", href: "/#warum-wir" },
   { label: "Einsatzgebiet", href: "/#einsatzgebiet" },
   { label: "Galerie", href: "/#galerie" },
-  { label: "Bewertungen", href: "/#bewertungen" },
   { label: "Kontakt", href: "/#kontakt" },
 ];
