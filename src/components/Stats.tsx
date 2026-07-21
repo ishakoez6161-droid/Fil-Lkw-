@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Award, Users, Wrench } from "lucide-react";
+import { useCanHover } from "@/lib/useCanHover";
 
 const stats = [
   {
@@ -58,12 +59,14 @@ function CountUp({ value, suffix }: { value: number; suffix: string }) {
 }
 
 export default function Stats() {
+  const canHover = useCanHover();
+
   return (
     <section className="relative border-y border-white/5 bg-ink-900 py-16 sm:py-20">
       <motion.div
         aria-hidden
-        animate={{ x: [0, 40, -30, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        animate={canHover ? { x: [0, 40, -30, 0] } : undefined}
+        transition={canHover ? { duration: 20, repeat: Infinity, ease: "easeInOut" } : undefined}
         className="pointer-events-none absolute left-1/2 top-1/2 h-[24rem] w-[50rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/[0.06] blur-[130px]"
       />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

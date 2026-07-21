@@ -11,6 +11,7 @@ import {
   Wrench,
   Zap,
 } from "lucide-react";
+import { useCanHover } from "@/lib/useCanHover";
 import SpotlightCard from "./SpotlightCard";
 
 const services = [
@@ -65,6 +66,8 @@ const services = [
 ];
 
 export default function Services() {
+  const canHover = useCanHover();
+
   return (
     <section id="leistungen" className="relative bg-ink-950 py-24 sm:py-32">
       <div
@@ -73,8 +76,8 @@ export default function Services() {
       />
       <motion.div
         aria-hidden
-        animate={{ x: [0, 60, -40, 0], y: [0, -20, 20, 0] }}
-        transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
+        animate={canHover ? { x: [0, 60, -40, 0], y: [0, -20, 20, 0] } : undefined}
+        transition={canHover ? { duration: 26, repeat: Infinity, ease: "easeInOut" } : undefined}
         className="pointer-events-none absolute left-1/2 top-0 h-[30rem] w-[60rem] -translate-x-1/2 rounded-full bg-brand-500/10 blur-[140px]"
       />
 

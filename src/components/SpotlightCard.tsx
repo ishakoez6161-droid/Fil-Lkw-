@@ -2,18 +2,21 @@
 
 import { useRef, type MouseEvent, type ReactNode } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useCanHover } from "@/lib/useCanHover";
 
-export default function SpotlightCard({
-  children,
-  className = "",
-  tilt = true,
-  lift = 0,
-}: {
+type SpotlightCardProps = {
   children: ReactNode;
   className?: string;
   tilt?: boolean;
   lift?: number;
-}) {
+};
+
+function SpotlightCardInner({
+  children,
+  className = "",
+  tilt = true,
+  lift = 0,
+}: SpotlightCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -59,5 +62,29 @@ export default function SpotlightCard({
         {children}
       </div>
     </motion.div>
+  );
+}
+
+/**
+ * On touch devices this skips the tilt/glow spring setup entirely
+ * (not just visually inert) since neither makes sense without a
+ * real cursor — renders a plain static card instead.
+ */
+export default function SpotlightCard({
+  children,
+  className = "",
+  tilt = true,
+  lift = 0,
+}: SpotlightCardProps) {
+  const canHover = useCanHover();
+
+  if (!canHover) {
+    return <div className={`group/spotlight relative ${className}`}>{children}</div>;
+  }
+
+  return (
+    <SpotlightCardInner tilt={tilt} lift={lift} className={className}>
+      {children}
+    </SpotlightCardInner>
   );
 }

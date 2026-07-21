@@ -55,7 +55,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-ink-950 text-ink-100 antialiased font-sans">
         <div
           aria-hidden
-          className="grain-overlay pointer-events-none fixed inset-0 z-40 opacity-[0.035] mix-blend-overlay"
+          className="grain-overlay pointer-events-none fixed inset-0 z-40 hidden opacity-[0.035] mix-blend-overlay sm:block"
         />
         <ScrollProgress />
         <CustomCursor />

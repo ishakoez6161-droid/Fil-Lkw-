@@ -209,6 +209,25 @@ body {
   }
 }
 
+/*
+ * backdrop-filter blur and animated background-position are both
+ * repaint-heavy on mobile GPUs. Below the sm breakpoint we swap the
+ * glass panels for a plain translucent fill and freeze the shimmer,
+ * keeping the same look without the continuous repaint cost.
+ */
+@media (max-width: 639px) {
+  .glass {
+    background: rgba(20, 22, 28, 0.92);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .text-shimmer {
+    animation: none;
+    background-position: 0% 0;
+  }
+}
+
 .custom-cursor-active,
 .custom-cursor-active * {
   cursor: none !important;

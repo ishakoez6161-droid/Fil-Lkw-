@@ -5,12 +5,14 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { AlertCircle, CheckCircle2, Loader2, Mail, MapPin, Phone, Send } from "lucide-react";
 import { site } from "@/lib/site";
+import { useCanHover } from "@/lib/useCanHover";
 import Magnetic from "./Magnetic";
 
 type Status = "idle" | "loading" | "success" | "error";
 
 export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
+  const canHover = useCanHover();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -44,8 +46,8 @@ export default function Contact() {
     <section id="kontakt" className="relative overflow-hidden bg-ink-900 py-24 sm:py-32">
       <motion.div
         aria-hidden
-        animate={{ x: [0, -50, 30, 0], y: [0, 30, -20, 0] }}
-        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
+        animate={canHover ? { x: [0, -50, 30, 0], y: [0, 30, -20, 0] } : undefined}
+        transition={canHover ? { duration: 24, repeat: Infinity, ease: "easeInOut" } : undefined}
         className="pointer-events-none absolute -top-32 left-1/2 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-brand-500/10 blur-[140px]"
       />
 

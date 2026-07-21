@@ -11,6 +11,7 @@ import {
 } from "framer-motion";
 import { ArrowRight, MapPin, Phone, ShieldCheck, Timer } from "lucide-react";
 import { site } from "@/lib/site";
+import { useCanHover } from "@/lib/useCanHover";
 import Magnetic from "./Magnetic";
 import SplitText from "./SplitText";
 
@@ -21,6 +22,7 @@ const stats = [
 ];
 
 export default function Hero() {
+  const canHover = useCanHover();
   const sectionRef = useRef<HTMLElement>(null);
   const imageWrapRef = useRef<HTMLDivElement>(null);
 
@@ -193,15 +195,12 @@ export default function Hero() {
 
             <motion.div
               initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: [0, -6, 0] }}
+              animate={{ opacity: 1, y: canHover ? [0, -6, 0] : 0 }}
               transition={{
                 opacity: { duration: 0.6, delay: 0.6 },
-                y: {
-                  duration: 4,
-                  delay: 1.2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
+                y: canHover
+                  ? { duration: 4, delay: 1.2, repeat: Infinity, ease: "easeInOut" }
+                  : { duration: 0.6, delay: 0.6 },
               }}
               className="glass shadow-soft absolute -bottom-6 -left-4 flex items-center gap-3 rounded-2xl px-5 py-4 sm:-left-8"
             >
@@ -218,15 +217,12 @@ export default function Hero() {
 
             <motion.div
               initial={{ opacity: 0, y: -16 }}
-              animate={{ opacity: 1, y: [0, 7, 0] }}
+              animate={{ opacity: 1, y: canHover ? [0, 7, 0] : 0 }}
               transition={{
                 opacity: { duration: 0.6, delay: 0.75 },
-                y: {
-                  duration: 4.5,
-                  delay: 1.4,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                },
+                y: canHover
+                  ? { duration: 4.5, delay: 1.4, repeat: Infinity, ease: "easeInOut" }
+                  : { duration: 0.6, delay: 0.75 },
               }}
               className="glass shadow-soft absolute -top-6 -right-4 hidden items-center gap-3 rounded-2xl px-5 py-4 sm:-right-8 sm:flex"
             >

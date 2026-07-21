@@ -1,28 +1,11 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-
-function subscribeToPointerType(callback: () => void) {
-  const mql = window.matchMedia("(pointer: fine)");
-  mql.addEventListener("change", callback);
-  return () => mql.removeEventListener("change", callback);
-}
-
-function getFinePointerSnapshot() {
-  return window.matchMedia("(pointer: fine)").matches;
-}
-
-function getFinePointerServerSnapshot() {
-  return false;
-}
+import { useCanHover } from "@/lib/useCanHover";
 
 export default function CustomCursor() {
-  const enabled = useSyncExternalStore(
-    subscribeToPointerType,
-    getFinePointerSnapshot,
-    getFinePointerServerSnapshot
-  );
+  const enabled = useCanHover();
   const [visible, setVisible] = useState(false);
   const [hovering, setHovering] = useState(false);
 
