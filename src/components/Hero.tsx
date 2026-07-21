@@ -17,11 +17,7 @@ export default function Hero() {
       <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,#000_10%,transparent_75%)]" />
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 right-[-10%] h-[36rem] w-[36rem] rounded-full bg-brand-500/15 blur-[130px]"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-56 left-[-10%] h-[30rem] w-[30rem] rounded-full bg-azure-500/10 blur-[120px]"
+        className="pointer-events-none absolute -top-40 right-[-10%] h-[30rem] w-[30rem] rounded-full bg-brand-500/15 blur-[90px]"
       />
       <div
         aria-hidden

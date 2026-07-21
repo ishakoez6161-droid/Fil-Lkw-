@@ -1,25 +1,21 @@
 import { Award, Users, Wrench } from "lucide-react";
-import CountUp from "./CountUp";
 
 const stats = [
   {
     icon: Award,
-    value: 25,
-    suffix: "+",
+    display: "25+",
     label: "Jahre Erfahrung",
     description: "im Nutzfahrzeug- und Bergungsgeschäft",
   },
   {
     icon: Wrench,
-    value: 8400,
-    suffix: "+",
+    display: "8.400+",
     label: "Abgeschlossene Reparaturen",
     description: "zuverlässig instand gesetzt",
   },
   {
     icon: Users,
-    value: 8,
-    suffix: "",
+    display: "8",
     label: "Team-Mitglieder",
     description: "erfahrene Techniker & Fahrer",
   },
@@ -30,7 +26,7 @@ export default function Stats() {
     <section className="relative border-y border-white/5 bg-ink-900 py-16 sm:py-20">
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[24rem] w-[50rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/[0.06] blur-[130px]"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[20rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/[0.06] blur-[90px]"
       />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
@@ -45,7 +41,7 @@ export default function Stats() {
                 <stat.icon size={22} />
               </div>
               <div className="text-shimmer text-4xl font-extrabold sm:text-5xl">
-                <CountUp value={stat.value} suffix={stat.suffix} />
+                {stat.display}
               </div>
               <div>
                 <div className="text-sm font-bold text-white">{stat.label}</div>
