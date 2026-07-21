@@ -6,28 +6,56 @@ const images = [
     alt: "Volvo FH 500 Bergefahrzeug von FIL Truck-Center",
     caption: "Unser Schwerlast-Bergefahrzeug",
     span: "sm:col-span-2 sm:row-span-2",
-    sizes: "(min-width: 640px) 800px, 100vw",
+    sizes: "(min-width: 640px) 540px, 100vw",
   },
   {
     src: "/images/truck-recovery.jpg",
     alt: "LKW-Bergung eines liegengebliebenen Sattelzugs",
     caption: "Bergung im Einsatz",
     span: "",
-    sizes: "(min-width: 640px) 400px, 100vw",
+    sizes: "(min-width: 640px) 270px, 100vw",
   },
   {
     src: "/images/truck-night.jpg",
     alt: "Nächtlicher Pannenhilfe-Einsatz von FIL Truck-Center",
     caption: "Rund um die Uhr im Einsatz",
     span: "",
-    sizes: "(min-width: 640px) 400px, 100vw",
+    sizes: "(min-width: 640px) 270px, 100vw",
+  },
+  {
+    src: "/images/truck-highway-front.jpg",
+    alt: "FIL Truck-Center Volvo FH 500 auf dem Weg zum Einsatz",
+    caption: "Auf dem Weg zu Ihnen",
+    span: "",
+    sizes: "(min-width: 640px) 270px, 100vw",
+  },
+  {
+    src: "/images/truck-loading-dusk.jpg",
+    alt: "FIL Truck-Center Bergefahrzeug bei der Abschleppung eines Sattelzugs in der Abenddämmerung",
+    caption: "Abschleppung im Einsatz",
+    span: "",
+    sizes: "(min-width: 640px) 270px, 100vw",
+  },
+  {
+    src: "/images/truck-night-recovery.jpg",
+    alt: "FIL Truck-Center Bergefahrzeug bei nächtlicher Pannenhilfe für einen MAN-Sattelzug",
+    caption: "Pannenhilfe bei Nacht",
+    span: "",
+    sizes: "(min-width: 640px) 270px, 100vw",
   },
   {
     src: "/images/workshop.jpg",
     alt: "Moderne Werkstatthalle von FIL Truck-Center",
     caption: "Unsere Werkstatt in Hamm",
     span: "sm:col-span-2",
-    sizes: "(min-width: 640px) 800px, 100vw",
+    sizes: "(min-width: 640px) 540px, 100vw",
+  },
+  {
+    src: "/images/truck-highway-side.jpg",
+    alt: "FIL Truck-Center Volvo FH 500 zieht liegengebliebenen Sattelzug von der Autobahn",
+    caption: "Autobahn-Bergung",
+    span: "",
+    sizes: "(min-width: 640px) 270px, 100vw",
   },
 ];
 
@@ -44,13 +72,13 @@ export default function Gallery() {
           </h2>
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-3 sm:grid-rows-2">
+        <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-4 sm:auto-rows-[9.5rem]">
           {images.map((image, i) => (
             <div
               key={image.src}
               data-reveal
               style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}
-              className={`group relative h-64 overflow-hidden rounded-2xl shadow-soft ring-1 ring-white/10 sm:h-full ${image.span}`}
+              className={`group relative h-64 overflow-hidden rounded-2xl shadow-soft ring-1 ring-white/10 sm:h-auto ${image.span}`}
             >
               <Image
                 src={image.src}
