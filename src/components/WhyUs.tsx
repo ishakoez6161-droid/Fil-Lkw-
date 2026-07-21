@@ -1,9 +1,5 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Award, Clock, ShieldCheck, Wrench } from "lucide-react";
-import SpotlightCard from "./SpotlightCard";
 
 const points = [
   {
@@ -37,57 +33,33 @@ export default function WhyUs() {
     <section id="warum-wir" className="relative bg-ink-900 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-16 lg:grid-cols-2">
-          <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="relative"
-          >
-            <SpotlightCard
-              tilt
-              className="relative overflow-hidden rounded-[2rem] shadow-soft ring-1 ring-white/10"
-            >
-              <div className="h-[24rem] sm:h-[32rem]">
-                <Image
-                  src="/images/workshop.jpg"
-                  alt="Moderne Nutzfahrzeug-Werkstatt von FIL Truck-Center"
-                  width={947}
-                  height={661}
-                  sizes="(min-width: 1024px) 600px, 100vw"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+          <div data-reveal className="relative">
+            <div className="relative overflow-hidden rounded-[2rem] shadow-soft ring-1 ring-white/10">
+              <Image
+                src="/images/workshop.jpg"
+                alt="Moderne Nutzfahrzeug-Werkstatt von FIL Truck-Center"
+                width={947}
+                height={661}
+                sizes="(min-width: 1024px) 600px, 100vw"
+                className="h-[24rem] w-full object-cover sm:h-[32rem]"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent" />
-            </SpotlightCard>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="glass shadow-soft absolute -bottom-8 right-4 max-w-[15rem] rounded-2xl p-5 sm:right-8"
-            >
-              <div className="font-display text-3xl font-extrabold text-brand-400">
-                Made
-              </div>
+            <div className="glass shadow-soft absolute -bottom-8 right-4 max-w-[15rem] rounded-2xl p-5 sm:right-8">
+              <div className="text-3xl font-extrabold text-brand-400">Made</div>
               <div className="text-sm font-semibold text-ink-200">
                 in Hamm – für den gesamten Fuhrpark Ihres Vertrauens.
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            >
+            <div data-reveal>
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-400">
                 Warum FIL Truck-Center?
               </span>
-              <h2 className="font-display text-balance mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+              <h2 className="text-balance mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
                 Zuverlässigkeit trifft auf moderne Technik
               </h2>
               <p className="mt-5 text-lg leading-relaxed text-ink-300">
@@ -96,36 +68,24 @@ export default function WhyUs() {
                 Beratung und Technik auf höchstem Niveau – damit Ihr Fuhrpark
                 so wenig Stillstand wie möglich hat.
               </p>
-            </motion.div>
+            </div>
 
             <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
               {points.map((point, i) => (
-                <motion.div
+                <div
                   key={point.title}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{
-                    duration: 0.6,
-                    delay: i * 0.1,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
+                  data-reveal
+                  style={{ "--reveal-delay": `${i * 80}ms` } as React.CSSProperties}
+                  className="hover-lift group rounded-2xl border border-white/10 bg-white/[0.03] p-5 hover:border-brand-500/40 hover:bg-white/[0.06]"
                 >
-                  <SpotlightCard
-                    lift={4}
-                    className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-colors duration-300 hover:border-brand-500/40 hover:bg-white/[0.06]"
-                  >
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-500/15 text-brand-400 transition-colors duration-300 group-hover/spotlight:bg-brand-500 group-hover/spotlight:text-ink-950">
-                      <point.icon size={18} />
-                    </div>
-                    <h3 className="mt-4 text-sm font-bold text-white">
-                      {point.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-400">
-                      {point.description}
-                    </p>
-                  </SpotlightCard>
-                </motion.div>
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-500/15 text-brand-400 transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-ink-950">
+                    <point.icon size={18} />
+                  </div>
+                  <h3 className="mt-4 text-sm font-bold text-white">{point.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-400">
+                    {point.description}
+                  </p>
+                </div>
               ))}
             </div>
           </div>

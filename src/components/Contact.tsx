@@ -2,10 +2,8 @@
 
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { AlertCircle, CheckCircle2, Loader2, Mail, MapPin, Phone, Send } from "lucide-react";
 import { site } from "@/lib/site";
-import Magnetic from "./Magnetic";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -48,53 +46,37 @@ export default function Contact() {
       />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-2xl text-center"
-        >
+        <div data-reveal className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-400">
             Kontakt
           </span>
-          <h2 className="font-display text-balance mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="text-balance mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
             Jetzt Hilfe anfordern
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-ink-300">
             Egal ob Notfall oder geplanter Werkstatttermin – wir sind für Sie
             da.
           </p>
-        </motion.div>
+        </div>
 
         <div className="mt-16 grid gap-8 lg:grid-cols-5">
-          <motion.div
-            initial={{ opacity: 0, x: -24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col justify-between gap-8 lg:col-span-2"
-          >
+          <div data-reveal className="flex flex-col justify-between gap-8 lg:col-span-2">
             <div className="rounded-[2rem] bg-brand-500 p-8 shadow-brand">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-ink-950">
                 <Phone size={20} className="text-brand-400" />
               </div>
-              <h3 className="font-display mt-5 text-xl font-bold text-ink-950">
-                24/7 Notruf-Hotline
-              </h3>
+              <h3 className="mt-5 text-xl font-bold text-ink-950">24/7 Notruf-Hotline</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-800">
                 Bei einer Panne oder einem Unfall zählt jede Minute – rufen
                 Sie uns direkt an.
               </p>
-              <Magnetic strength={0.25} className="mt-6">
-                <a
-                  href={site.phoneHref}
-                  className="btn-shine inline-flex items-center gap-2 rounded-full bg-ink-950 px-6 py-3 text-sm font-bold text-white transition-transform hover:scale-[1.03]"
-                >
-                  <Phone size={16} />
-                  {site.phone}
-                </a>
-              </Magnetic>
+              <a
+                href={site.phoneHref}
+                className="btn-shine mt-6 inline-flex items-center gap-2 rounded-full bg-ink-950 px-6 py-3 text-sm font-bold text-white transition-transform hover:scale-[1.03]"
+              >
+                <Phone size={16} />
+                {site.phone}
+              </a>
             </div>
 
             <div className="space-y-5 rounded-[2rem] border border-white/10 bg-white/[0.03] p-8">
@@ -139,13 +121,11 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+          <div
+            data-reveal
+            style={{ "--reveal-delay": "100ms" } as React.CSSProperties}
             className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 lg:col-span-3"
           >
             {status === "success" ? (
@@ -153,7 +133,7 @@ export default function Contact() {
                 <div className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-500/15 text-brand-400">
                   <CheckCircle2 size={32} />
                 </div>
-                <h3 className="font-display mt-6 text-xl font-bold text-white">
+                <h3 className="mt-6 text-xl font-bold text-white">
                   Vielen Dank für Ihre Anfrage!
                 </h3>
                 <p className="mt-2 max-w-sm text-sm text-ink-300">
@@ -243,29 +223,27 @@ export default function Contact() {
                 )}
 
                 <div className="sm:col-span-2">
-                  <Magnetic strength={0.15} block className="w-full sm:w-auto">
-                    <button
-                      type="submit"
-                      disabled={status === "loading"}
-                      className="btn-shine inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-500 px-7 py-4 text-sm font-bold text-ink-950 shadow-brand transition-transform hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 disabled:hover:scale-100 sm:w-auto"
-                    >
-                      {status === "loading" ? (
-                        <>
-                          <Loader2 size={16} className="animate-spin" />
-                          Wird gesendet...
-                        </>
-                      ) : (
-                        <>
-                          <Send size={16} />
-                          Anfrage senden
-                        </>
-                      )}
-                    </button>
-                  </Magnetic>
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="btn-shine inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-500 px-7 py-4 text-sm font-bold text-ink-950 shadow-brand transition-transform hover:scale-[1.01] active:scale-[0.99] disabled:opacity-70 disabled:hover:scale-100 sm:w-auto"
+                  >
+                    {status === "loading" ? (
+                      <>
+                        <Loader2 size={16} className="animate-spin" />
+                        Wird gesendet...
+                      </>
+                    ) : (
+                      <>
+                        <Send size={16} />
+                        Anfrage senden
+                      </>
+                    )}
+                  </button>
                 </div>
               </form>
             )}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

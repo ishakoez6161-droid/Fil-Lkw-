@@ -1,8 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
-import SpotlightCard from "./SpotlightCard";
 
 const images = [
   {
@@ -39,52 +35,36 @@ export default function Gallery() {
   return (
     <section id="galerie" className="relative bg-ink-900 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-2xl text-center"
-        >
+        <div data-reveal className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-400">
             Galerie
           </span>
-          <h2 className="font-display text-balance mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="text-balance mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
             Einblicke in unsere Einsätze
           </h2>
-        </motion.div>
+        </div>
 
         <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-3 sm:grid-rows-2">
           {images.map((image, i) => (
-            <motion.div
+            <div
               key={image.src}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.6,
-                delay: i * 0.08,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className={image.span}
+              data-reveal
+              style={{ "--reveal-delay": `${i * 70}ms` } as React.CSSProperties}
+              className={`group relative h-64 overflow-hidden rounded-2xl shadow-soft ring-1 ring-white/10 sm:h-full ${image.span}`}
             >
-              <SpotlightCard className="group relative h-64 overflow-hidden rounded-2xl shadow-soft ring-1 ring-white/10 sm:h-full">
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  width={1200}
-                  height={900}
-                  sizes={image.sizes}
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-ink-950/0 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-90" />
-                <div className="absolute bottom-0 left-0 translate-y-2 p-5 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                  <span className="text-sm font-bold text-white">
-                    {image.caption}
-                  </span>
-                </div>
-              </SpotlightCard>
-            </motion.div>
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={1200}
+                height={900}
+                sizes={image.sizes}
+                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-ink-950/0 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-90" />
+              <div className="absolute bottom-0 left-0 translate-y-2 p-5 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                <span className="text-sm font-bold text-white">{image.caption}</span>
+              </div>
+            </div>
           ))}
         </div>
       </div>

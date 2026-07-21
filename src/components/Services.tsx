@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import {
   Cog,
   Gauge,
@@ -11,7 +8,6 @@ import {
   Wrench,
   Zap,
 } from "lucide-react";
-import SpotlightCard from "./SpotlightCard";
 
 const services = [
   {
@@ -77,17 +73,11 @@ export default function Services() {
       />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-2xl text-center"
-        >
+        <div data-reveal className="mx-auto max-w-2xl text-center">
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand-400">
             Unsere Leistungen
           </span>
-          <h2 className="font-display text-balance mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="text-balance mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
             Von der Straße bis zur Werkstatt – alles aus einer Hand
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-ink-300">
@@ -95,39 +85,27 @@ export default function Services() {
             Truck-Center bringt Ihr Nutzfahrzeug zuverlässig zurück auf die
             Straße.
           </p>
-        </motion.div>
+        </div>
 
         <div className="mt-16 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service, i) => (
-            <motion.div
+            <div
               key={service.title}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.6,
-                delay: (i % 4) * 0.08,
-                ease: [0.22, 1, 0.36, 1],
-              }}
+              data-reveal
+              style={{ "--reveal-delay": `${(i % 4) * 70}ms` } as React.CSSProperties}
+              className="hover-lift group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-brand-500/40 hover:bg-white/[0.06]"
             >
-              <SpotlightCard
-                lift={6}
-                className="h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:border-brand-500/40 hover:bg-white/[0.06]"
-              >
-                <span className="font-display pointer-events-none absolute -top-2 right-3 text-6xl font-extrabold text-white/[0.05] transition-colors duration-300 group-hover/spotlight:text-brand-500/10">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-500/15 text-brand-400 transition-colors duration-300 group-hover/spotlight:bg-brand-500 group-hover/spotlight:text-ink-950">
-                  <service.icon size={22} />
-                </div>
-                <h3 className="mt-5 text-base font-bold text-white">
-                  {service.title}
-                </h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-ink-400">
-                  {service.description}
-                </p>
-              </SpotlightCard>
-            </motion.div>
+              <span className="pointer-events-none absolute -top-2 right-3 text-6xl font-extrabold text-white/[0.05] transition-colors duration-300 group-hover:text-brand-500/10">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-500/15 text-brand-400 transition-colors duration-300 group-hover:bg-brand-500 group-hover:text-ink-950">
+                <service.icon size={22} />
+              </div>
+              <h3 className="mt-5 text-base font-bold text-white">{service.title}</h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-ink-400">
+                {service.description}
+              </p>
+            </div>
           ))}
         </div>
       </div>

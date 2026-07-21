@@ -1,17 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Manrope } from "next/font/google";
-import CustomCursor from "@/components/CustomCursor";
-import ScrollProgress from "@/components/ScrollProgress";
+import { Inter } from "next/font/google";
+import ScrollReveal from "@/components/ScrollReveal";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
 import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const manrope = Manrope({
-  variable: "--font-manrope",
   subsets: ["latin"],
   display: "swap",
 });
@@ -51,10 +45,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className={`${inter.variable} ${manrope.variable} h-full scroll-smooth`}>
+    <html lang="de" className={`${inter.variable} h-full scroll-smooth`}>
       <body className="min-h-full flex flex-col bg-ink-950 text-ink-100 antialiased font-sans">
-        <ScrollProgress />
-        <CustomCursor />
+        <ScrollProgressBar />
+        <ScrollReveal />
         {children}
       </body>
     </html>
