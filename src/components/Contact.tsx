@@ -5,14 +5,12 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { AlertCircle, CheckCircle2, Loader2, Mail, MapPin, Phone, Send } from "lucide-react";
 import { site } from "@/lib/site";
-import { useCanHover } from "@/lib/useCanHover";
 import Magnetic from "./Magnetic";
 
 type Status = "idle" | "loading" | "success" | "error";
 
 export default function Contact() {
   const [status, setStatus] = useState<Status>("idle");
-  const canHover = useCanHover();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -44,17 +42,15 @@ export default function Contact() {
 
   return (
     <section id="kontakt" className="relative overflow-hidden bg-ink-900 py-24 sm:py-32">
-      <motion.div
+      <div
         aria-hidden
-        animate={canHover ? { x: [0, -50, 30, 0], y: [0, 30, -20, 0] } : undefined}
-        transition={canHover ? { duration: 24, repeat: Infinity, ease: "easeInOut" } : undefined}
         className="pointer-events-none absolute -top-32 left-1/2 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-brand-500/10 blur-[140px]"
       />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto max-w-2xl text-center"

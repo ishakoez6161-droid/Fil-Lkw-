@@ -2,16 +2,9 @@
 
 import { useRef, type MouseEvent } from "react";
 import Image from "next/image";
-import {
-  motion,
-  useMotionValue,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowRight, MapPin, Phone, ShieldCheck, Timer } from "lucide-react";
 import { site } from "@/lib/site";
-import { useCanHover } from "@/lib/useCanHover";
 import Magnetic from "./Magnetic";
 import SplitText from "./SplitText";
 
@@ -22,22 +15,12 @@ const stats = [
 ];
 
 export default function Hero() {
-  const canHover = useCanHover();
   const sectionRef = useRef<HTMLElement>(null);
-  const imageWrapRef = useRef<HTMLDivElement>(null);
 
   const glowX = useMotionValue(0);
   const glowY = useMotionValue(0);
   const springGlowX = useSpring(glowX, { stiffness: 60, damping: 22 });
   const springGlowY = useSpring(glowY, { stiffness: 60, damping: 22 });
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, 60]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, -30]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.3]);
 
   function handleMouseMove(event: MouseEvent<HTMLElement>) {
     const rect = sectionRef.current?.getBoundingClientRect();
@@ -83,7 +66,7 @@ export default function Hero() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-10">
-          <motion.div style={{ y: contentY, opacity: contentOpacity }}>
+          <div>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -168,7 +151,7 @@ export default function Hero() {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           <motion.div
             initial={{ opacity: 0, scale: 0.94 }}
@@ -176,11 +159,7 @@ export default function Hero() {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
             className="relative"
           >
-            <motion.div
-              ref={imageWrapRef}
-              style={{ y: imageY }}
-              className="relative overflow-hidden rounded-[2rem] shadow-soft ring-1 ring-white/10"
-            >
+            <div className="relative overflow-hidden rounded-[2rem] shadow-soft ring-1 ring-white/10">
               <Image
                 src="/images/truck-hero.jpg"
                 alt="FIL Truck-Center Abschlepp-LKW Volvo FH 500"
@@ -188,20 +167,15 @@ export default function Hero() {
                 height={1000}
                 priority
                 sizes="(min-width: 1024px) 620px, 100vw"
-                className="h-[26rem] w-full scale-110 object-cover sm:h-[32rem]"
+                className="h-[26rem] w-full object-cover sm:h-[32rem]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-ink-950/10 to-transparent" />
-            </motion.div>
+            </div>
 
             <motion.div
               initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: canHover ? [0, -6, 0] : 0 }}
-              transition={{
-                opacity: { duration: 0.6, delay: 0.6 },
-                y: canHover
-                  ? { duration: 4, delay: 1.2, repeat: Infinity, ease: "easeInOut" }
-                  : { duration: 0.6, delay: 0.6 },
-              }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
               className="glass shadow-soft absolute -bottom-6 -left-4 flex items-center gap-3 rounded-2xl px-5 py-4 sm:-left-8"
             >
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-500">
@@ -217,13 +191,8 @@ export default function Hero() {
 
             <motion.div
               initial={{ opacity: 0, y: -16 }}
-              animate={{ opacity: 1, y: canHover ? [0, 7, 0] : 0 }}
-              transition={{
-                opacity: { duration: 0.6, delay: 0.75 },
-                y: canHover
-                  ? { duration: 4.5, delay: 1.4, repeat: Infinity, ease: "easeInOut" }
-                  : { duration: 0.6, delay: 0.75 },
-              }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.75 }}
               className="glass shadow-soft absolute -top-6 -right-4 hidden items-center gap-3 rounded-2xl px-5 py-4 sm:-right-8 sm:flex"
             >
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10">

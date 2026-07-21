@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Award, Clock, ShieldCheck, Wrench } from "lucide-react";
 import SpotlightCard from "./SpotlightCard";
 
@@ -34,19 +33,11 @@ const points = [
 ];
 
 export default function WhyUs() {
-  const imageRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: imageRef,
-    offset: ["start end", "end start"],
-  });
-  const imageY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
-
   return (
     <section id="warum-wir" className="relative bg-ink-900 py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-16 lg:grid-cols-2">
           <motion.div
-            ref={imageRef}
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -57,16 +48,16 @@ export default function WhyUs() {
               tilt
               className="relative overflow-hidden rounded-[2rem] shadow-soft ring-1 ring-white/10"
             >
-              <motion.div style={{ y: imageY }} className="h-[24rem] sm:h-[32rem]">
+              <div className="h-[24rem] sm:h-[32rem]">
                 <Image
                   src="/images/workshop.jpg"
                   alt="Moderne Nutzfahrzeug-Werkstatt von FIL Truck-Center"
                   width={947}
                   height={661}
                   sizes="(min-width: 1024px) 600px, 100vw"
-                  className="h-full w-full scale-110 object-cover"
+                  className="h-full w-full object-cover"
                 />
-              </motion.div>
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-ink-950/60 via-transparent to-transparent" />
             </SpotlightCard>
 
@@ -88,8 +79,8 @@ export default function WhyUs() {
 
           <div>
             <motion.div
-              initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
@@ -111,8 +102,8 @@ export default function WhyUs() {
               {points.map((point, i) => (
                 <motion.div
                   key={point.title}
-                  initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
-                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{
                     duration: 0.6,

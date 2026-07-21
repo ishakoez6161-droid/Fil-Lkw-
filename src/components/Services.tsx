@@ -11,7 +11,6 @@ import {
   Wrench,
   Zap,
 } from "lucide-react";
-import { useCanHover } from "@/lib/useCanHover";
 import SpotlightCard from "./SpotlightCard";
 
 const services = [
@@ -66,25 +65,21 @@ const services = [
 ];
 
 export default function Services() {
-  const canHover = useCanHover();
-
   return (
     <section id="leistungen" className="relative bg-ink-950 py-24 sm:py-32">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"
       />
-      <motion.div
+      <div
         aria-hidden
-        animate={canHover ? { x: [0, 60, -40, 0], y: [0, -20, 20, 0] } : undefined}
-        transition={canHover ? { duration: 26, repeat: Infinity, ease: "easeInOut" } : undefined}
         className="pointer-events-none absolute left-1/2 top-0 h-[30rem] w-[60rem] -translate-x-1/2 rounded-full bg-brand-500/10 blur-[140px]"
       />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto max-w-2xl text-center"
@@ -106,8 +101,8 @@ export default function Services() {
           {services.map((service, i) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 28, filter: "blur(6px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{
                 duration: 0.6,
