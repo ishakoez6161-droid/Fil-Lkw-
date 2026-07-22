@@ -23,7 +23,7 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="relative border-y border-white/5 bg-ink-900 py-16 sm:py-20">
+    <section className="relative overflow-hidden border-y border-white/5 bg-ink-900 py-16 sm:py-20">
       <div
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-1/2 h-[20rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/[0.06] blur-[90px]"

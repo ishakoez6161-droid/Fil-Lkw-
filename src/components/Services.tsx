@@ -62,7 +62,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="leistungen" className="relative bg-ink-950 py-24 sm:py-32">
+    <section id="leistungen" className="relative overflow-hidden bg-ink-950 py-24 sm:py-32">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"
