@@ -26,7 +26,7 @@ export default function Stats() {
     <section className="relative overflow-hidden border-y border-white/5 bg-ink-900 py-16 sm:py-20">
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[20rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-500/[0.06] blur-[90px]"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[20rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(circle,rgba(255,201,0,0.07),transparent_70%)]"
       />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 divide-y divide-white/10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">

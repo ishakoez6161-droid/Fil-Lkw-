@@ -69,7 +69,7 @@ export default function Services() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 h-[30rem] w-[60rem] -translate-x-1/2 rounded-full bg-brand-500/10 blur-[140px]"
+        className="pointer-events-none absolute left-1/2 top-0 h-[30rem] w-[60rem] -translate-x-1/2 bg-[radial-gradient(ellipse,rgba(255,201,0,0.11),transparent_70%)]"
       />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
